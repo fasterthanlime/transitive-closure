@@ -85,14 +85,35 @@ Matrix: class {
         a := mr
         b := a
         
+        "Mr = " println()
+        mr toString() println()
+        
         // from 2 to n, inclusive
         for(i in 2..(rows + 1)) {
             a = a mul(mr)
             b = b or(a)
+            
+            "\n   ----------" println()
+            "\nMr^%d = \n" format(i) println()
+            a toString() println()
+            "\nAt step %d, b = \n" format(i) println()
+            b toString() println()
         }
         
+        "\nFinal transitive closure boolean matrix = \n" println()
+        b toString() println()
         b
     }
+    
+    printRelations: func (pretty: String) {
+        for(row in 0..rows) for(col in 0..cols) {
+            if(this[row][col]) {
+                "(%c, %c) " format(pretty[row], pretty[col]) print()
+            }
+        }
+        println()
+    }
+
  
     /**
        :return: A string representation of this matrix
