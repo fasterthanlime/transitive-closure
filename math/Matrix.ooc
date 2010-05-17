@@ -105,6 +105,35 @@ Matrix: class {
         b
     }
     
+    warshall: func -> This {
+        w := clone()
+        n := rows
+        
+        for(k in 0..n) {
+            for(i in 0..n) {
+                for(j in 0..n) {
+                    w[i][j] = w[i][j] || (w[i][k] && w[k][j])
+                }
+            }
+            
+            "\nAt step k = %d, the warshall matrix w = \n" format(k + 1) println()
+            w toString() println()
+        }
+        
+        "\nFinal warshall matrix = \n" println()
+        w toString() println()
+        
+        w
+    }
+    
+    clone: func -> This {
+        copy := new(rows, cols)
+        for(row in 0..rows) for(col in 0..cols) {
+            copy[row][col] = this[row][col]
+        }
+        copy
+    }
+    
     printRelations: func (pretty: String) {
         for(row in 0..rows) for(col in 0..cols) {
             if(this[row][col]) {

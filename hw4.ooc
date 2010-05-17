@@ -27,7 +27,8 @@ compute: func (rels: Relation[]) {
     m printRelations(pretty)
     println()
     
-    tc := m transitiveClosure()
+    //tc := m transitiveClosure()
+    tc := m warshall()
     println()
     tc printRelations(pretty)
     "=====================\n" println()
